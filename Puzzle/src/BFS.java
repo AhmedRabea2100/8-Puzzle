@@ -23,7 +23,7 @@ public class BFS {
     private boolean isGoal(){
         for(int i = 0; i < 3; i++)
             for(int j = 0; j < 3; j++)
-                if(currentNode.getState()[i][j] != goalState[i][j])
+                if(currentNode.getBoard()[i][j] != goalState[i][j])
                     return false;
         return true;
     }
@@ -33,12 +33,12 @@ public class BFS {
         while (!fringe.isEmpty()){
 
             currentNode = fringe.poll();
-            exploredNodes.add(arrToString(currentNode.getState()));
+            exploredNodes.add(arrToString(currentNode.getBoard()));
             if(isGoal())
                 return currentNode;
 
             for(var neighbour : currentNode.getNeighbors(currentNode))
-                if(!exploredNodes.contains(arrToString(neighbour.getState())) && !fringe.contains(neighbour))
+                if(!exploredNodes.contains(arrToString(neighbour.getBoard())) && !fringe.contains(neighbour))
                     fringe.add(neighbour);
 
         }

@@ -4,10 +4,10 @@ import java.util.List;
 
 public class State {
 
-	private int[][] board = new int[3][3];
+	private int[][] board;
 	private Point emptyTile;
-	private List<State> neighbours;
 	private State parent;
+	private List<State> neighbours;
 	private int cost;
 	private String path;
 	private int maxDepth = 0;
@@ -79,12 +79,12 @@ public class State {
 		return (x >= 0 && x < 3 && y >= 0 && y < 3);
 	}
 
-	public int[][] getState() {
+	public int[][] getBoard() {
 		return board;
 	}
 
-	public void setState(int[][] state) {
-		this.board = state;
+	public void setBoard(int[][] board) {
+		this.board = board;
 	}
 
 	public State getParent() {
