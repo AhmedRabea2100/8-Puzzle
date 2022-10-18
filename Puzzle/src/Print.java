@@ -2,9 +2,9 @@
 import java.util.Stack;
 
 public class Print {
-    static Node currentNode;
+    static State currentNode;
     static BFS  bfs;
-    public Print(Node currentNode,BFS bfs){
+    public Print(State currentNode,BFS bfs){
         this.currentNode = currentNode;
         this.bfs = bfs;
     }
@@ -21,7 +21,7 @@ public class Print {
         System.out.println("------------------------------");
     }
     private static   void  printPath(){
-        Stack<Node> sol = new Stack<>();
+        Stack<State> sol = new Stack<>();
         sol.push(currentNode);
         currentNode = currentNode.getParent();
         while (currentNode.getParent() != null) {

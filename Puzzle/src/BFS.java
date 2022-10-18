@@ -2,23 +2,16 @@ import java.util.*;
 
 public class BFS {
     int[][] initialState = new int[3][3];
-    Node root;
-    Node currentNode;
+    State root;
+    State currentNode;
     int[][] goalState = {{0,1,2},{3,4,5},{6,7,8}};
-    Queue<Node> fringe = new LinkedList<>();
+    Queue<State> fringe = new LinkedList<>();
     Set<String> exploredNodes = new HashSet<>();
 
 
     public BFS(int[][] state){
-        for(int i = 0;i<3;i++){
-            for(int j = 0;j<3;j++){
-                if(state[i][j]==0) {
-                    root = new Node(i,j,null,initialState,0,"");
-                }
-                initialState[i][j] = state[i][j];
-            }
-        }
-        root.setState(initialState);
+
+        root = new State(state, null,0,"");
     }
     private String arrToString(int[][] state){
         String str = "";
@@ -35,7 +28,7 @@ public class BFS {
         return true;
     }
 
-    public Node solve(){
+    public State solve(){
         fringe.add(root);
         while (!fringe.isEmpty()){
 
