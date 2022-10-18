@@ -1,3 +1,6 @@
 /Puzzle/.idea/
 /Puzzle/out/
 *.iml
+/bin/
+.project
+.classpath
