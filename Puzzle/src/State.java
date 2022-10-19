@@ -3,13 +3,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class State {
+
 	private int[][] board;
 	private Point emptyTile;
 	private State parent;
-	private List<State> neighbors;
 	private int cost;
 	private String path;
-	private int maxDepth = 0;
 
 	public enum Direction {
 		Left(new Point(-1, 0), "L"), UP(new Point(0, -1), "U"), Right(new Point(1, 0), "R"), Down(new Point(0, 1), "D");
@@ -39,10 +38,8 @@ public class State {
 		this.board = board;
 		this.parent = parent;
 		emptyTile = findEmptyTile();
-		neighbors = new ArrayList<>();
 		this.cost = cost;
 		this.path = path;
-		this.maxDepth = Math.max(this.maxDepth, this.cost);
 	}
 
 	private Point findEmptyTile() {
@@ -55,11 +52,33 @@ public class State {
 		return null;
 	}
 
-	private void findNeighbors() {
+	public String stringify() {
+		String str = "";
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 3; j++)
+				str += Integer.toString(board[i][j]);
+		return str;
+	}
+
+	public int[][] getBoard() {
+		return board;
+	}
+
+	public State getParent() {
+		return parent;
+	}
+
+	public List<State> getNeighbors() {
+		List<State> neighbors = new ArrayList<>();
 		for (Direction direction : Direction.values()) {
 			if (isSafe(emptyTile.y + direction.getY(), emptyTile.x + direction.getX()))
 				neighbors.add(swap(direction));
 		}
+		return neighbors;
+	}
+
+	private boolean isSafe(int y, int x) {
+		return (x >= 0 && x < 3 && y >= 0 && y < 3);
 	}
 
 	private State swap(Direction direction) {
@@ -74,41 +93,8 @@ public class State {
 		return new State(newBoard, this, cost + 1, path + direction.getPath());
 	}
 
-	private static boolean isSafe(int y, int x) {
-		return (x >= 0 && x < 3 && y >= 0 && y < 3);
-	}
-
-	public String stringify() {
-		String str = "";
-		for (int i = 0; i < 3; i++)
-			for (int j = 0; j < 3; j++)
-				str += Integer.toString(board[i][j]);
-		return str;
-	}
-
 	public boolean isGoal() {
 		return "012345678".equals(stringify());
-	}
-
-	public int[][] getBoard() {
-		return board;
-	}
-
-	public void setBoard(int[][] board) {
-		this.board = board;
-	}
-
-	public State getParent() {
-		return parent;
-	}
-
-	public List<State> getNeighbors() {
-		findNeighbors();
-		return neighbors;
-	}
-
-	public void setNeighbors(List<State> neighbors) {
-		this.neighbors = neighbors;
 	}
 
 	public String getPath() {
@@ -117,10 +103,6 @@ public class State {
 
 	public int getCost() {
 		return cost;
-	}
-
-	public int getMaxDepth() {
-		return maxDepth;
 	}
 
 	@Override
