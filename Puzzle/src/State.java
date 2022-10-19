@@ -3,17 +3,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class State {
-
-	private int[][] board = new int[3][3];
+	private int[][] board;
 	private Point emptyTile;
 	private List<State> neighbours;
 	private State parent;
 	private int cost;
 	private String path;
 	private int maxDepth = 0;
-
 	public enum Direction {
-		Left(new Point(-1, 0), "L"), UP(new Point(0, -1), "U"), Right(new Point(1, 0), "R"), Down(new Point(0, 1), "D");
+		Left(new Point(-1, 0), "L"),
+		UP(new Point(0, -1), "U"),
+		Right(new Point(1, 0), "R"),
+		Down(new Point(0, 1), "D");
 
 		private Point direction;
 		private String path;
@@ -57,8 +58,8 @@ public class State {
 	}
 
 	private void findNeighbours(State state) {
-		for (Direction direction : Direction.values()) {
-			if (isSafe(emptyTile.y + direction.getY(), emptyTile.x + direction.getX()))
+		for(Direction direction : Direction.values()) {
+			if(isSafe(emptyTile.y + direction.getY(), emptyTile.x + direction.getX()))
 				neighbours.add(swap(direction, state));
 		}
 	}
@@ -75,10 +76,20 @@ public class State {
 		return new State(newBoard, state, cost + 1, path + direction.getPath());
 	}
 
-	private static boolean isSafe(int x, int y) {
+	private static boolean isSafe(int y, int x) {
 		return (x >= 0 && x < 3 && y >= 0 && y < 3);
 	}
 
+	public String arrToString(){
+		String str = "";
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 3; j++)
+				str += Integer.toString(board[i][j]);
+		return str;
+	}
+	public boolean isGoal(){
+		return "012345678".equals(arrToString());
+	}
 	public int[][] getState() {
 		return board;
 	}

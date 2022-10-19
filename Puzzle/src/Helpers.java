@@ -1,10 +1,10 @@
 
-import java.util.Stack;
+import java.util.*;
 
-public class Print {
+public class Helpers {
     static State currentNode;
     static BFS  bfs;
-    public Print(State currentNode,BFS bfs){
+    public Helpers(State currentNode, BFS bfs){
         this.currentNode = currentNode;
         this.bfs = bfs;
     }
@@ -35,18 +35,15 @@ public class Print {
             printCurrentState();
         }
     }
-
-    private   static void printCost(){
+    private static void printCost(){
         System.out.println(currentNode.getCost());
     }
     private static void path(){
         System.out.println(currentNode.getPath());
     }
     private static void printExploredNodes(){
-        System.out.println(bfs.getExploredNodes().size());
+        System.out.println(bfs.getExploredNodes());
     }
-
-
 
     public void print(){
         printPath();
@@ -54,6 +51,5 @@ public class Print {
         printCost();
         printExploredNodes();
     }
-
 
 }
