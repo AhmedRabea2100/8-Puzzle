@@ -1,59 +1,49 @@
-
 import java.util.Stack;
 
 public class Print {
-    static State currentNode;
-    static BFS  bfs;
-    public Print(State currentNode,BFS bfs){
-        this.currentNode = currentNode;
-        this.bfs = bfs;
-    }
-    private static void printCurrentState() {
-        System.out.println("Current state after: " + currentNode.getPath());
-        for(int i = 0;i < 3; i++)
-        {
-            for(int j = 0; j < 3; j++)
-            {
-                System.out.print(currentNode.getBoard()[i][j]+" ");
-            }
-            System.out.println();
-        }
-        System.out.println("------------------------------");
-    }
-    private static   void  printPath(){
-        Stack<State> sol = new Stack<>();
-        sol.push(currentNode);
-        currentNode = currentNode.getParent();
-        while (currentNode.getParent() != null) {
-            sol.push(currentNode);
-            currentNode = currentNode.getParent();
-        }
-        sol.push(currentNode);
-        int size = sol.size();
-        for (int i=0;i<size;i++){
-            currentNode = sol.pop();
-            printCurrentState();
-        }
-    }
 
-    private   static void printCost(){
-        System.out.println(currentNode.getCost());
-    }
-    private static void path(){
-        System.out.println(currentNode.getPath());
-    }
-    private static void printExploredNodes(){
-        System.out.println(bfs.getExploredNodes().size());
-    }
+	private State state;
+	private BFS bfs;
 
+	public Print(State state, BFS bfs) {
+		this.state = state;
+		this.bfs = bfs;
+	}
+	
+	public void print() {
+		printStates();
+		printPath();
+		printCost();
+		printNumExploredStates();
+	}
+	
+	private void printStates() {
+		Stack<State> stack = new Stack<>();
+		while (state != null) {
+			stack.push(state);
+			state = state.getParent();
+		}
+		while (!stack.isEmpty()) {
+			state = stack.pop();
+			printCurrentState();
+		}
+	}
+	
+	private void printCurrentState() {
+		System.out.println("Current state after: " + state.getPath());
+		System.out.println(state);
+		System.out.println("------------------------------");
+	}
+	
+	private void printPath() {
+		System.out.println("Path to goal: " + state.getPath());
+	}
 
+	private void printCost() {
+		System.out.println("Cost = " + state.getCost());
+	}
 
-    public void print(){
-        printPath();
-        path();
-        printCost();
-        printExploredNodes();
-    }
-
-
+	private void printNumExploredStates() {
+		System.out.println("Number of expanded nodes = " + bfs.getNumExploredNodes());
+	}
 }

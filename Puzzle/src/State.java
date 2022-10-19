@@ -7,7 +7,7 @@ public class State {
 	private int[][] board;
 	private Point emptyTile;
 	private State parent;
-	private List<State> neighbours;
+	private List<State> neighbors;
 	private int cost;
 	private String path;
 	private int maxDepth = 0;
@@ -40,7 +40,7 @@ public class State {
 		this.board = board;
 		this.parent = parent;
 		emptyTile = findEmptyTile();
-		neighbours = new ArrayList<>();
+		neighbors = new ArrayList<>();
 		this.cost = cost;
 		this.path = path;
 		this.maxDepth = Math.max(this.maxDepth, this.cost);
@@ -56,14 +56,14 @@ public class State {
 		return null;
 	}
 
-	private void findNeighbours(State state) {
+	private void findNeighbors() {
 		for (Direction direction : Direction.values()) {
 			if (isSafe(emptyTile.y + direction.getY(), emptyTile.x + direction.getX()))
-				neighbours.add(swap(direction, state));
+				neighbors.add(swap(direction));
 		}
 	}
 
-	private State swap(Direction direction, State state) {
+	private State swap(Direction direction) {
 		int[][] newBoard = new int[3][3];
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++)
@@ -72,7 +72,7 @@ public class State {
 
 		newBoard[emptyTile.y + direction.getY()][emptyTile.x + direction.getX()] = board[emptyTile.y][emptyTile.x];
 		newBoard[emptyTile.y][emptyTile.x] = board[emptyTile.y + direction.getY()][emptyTile.x + direction.getX()];
-		return new State(newBoard, state, cost + 1, path + direction.getPath());
+		return new State(newBoard, this, cost + 1, path + direction.getPath());
 	}
 
 	private static boolean isSafe(int x, int y) {
@@ -91,13 +91,13 @@ public class State {
 		return parent;
 	}
 
-	public List<State> getNeighbors(State state) {
-		findNeighbours(state);
-		return neighbours;
+	public List<State> getNeighbors() {
+		findNeighbors();
+		return neighbors;
 	}
 
-	public void setNeighbours(List<State> neighbours) {
-		this.neighbours = neighbours;
+	public void setNeighbors(List<State> neighbors) {
+		this.neighbors = neighbors;
 	}
 
 	public String getPath() {
@@ -110,5 +110,16 @@ public class State {
 
 	public int getMaxDepth() {
 		return maxDepth;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++)
+				builder.append(board[i][j] + " ");
+			builder.append("\n");
+		}
+		return builder.toString();
 	}
 }
