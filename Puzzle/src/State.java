@@ -10,10 +10,7 @@ public class State {
 	private String path;
 
 	public enum Direction {
-		Right(new Point(1, 0), "R"),
-		Left(new Point(-1, 0), "L"),
-		UP(new Point(0, -1), "U"),
-		Down(new Point(0, 1), "D");
+		Right(new Point(1, 0), "R"), Left(new Point(-1, 0), "L"), UP(new Point(0, -1), "U"), Down(new Point(0, 1), "D");
 
 		private Point direction;
 		private String path;
@@ -114,13 +111,13 @@ public class State {
 		for (int i = 0; i < 3; i++) {
 			builder.append("| ");
 			for (int j = 0; j < 3; j++) {
-				if(board[i][j] == 0)
+				if (board[i][j] == 0)
 					builder.append(" " + " | ");
 				else
 					builder.append(board[i][j] + " | ");
 			}
-				builder.append("\n"+"+---+---+---+");
-			if(i != 2)
+			builder.append("\n" + "+---+---+---+");
+			if (i != 2)
 				builder.append("\n");
 		}
 		return builder.toString();

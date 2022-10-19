@@ -1,4 +1,5 @@
 public class aStarEuclidean extends aStar {
+
 	public aStarEuclidean(int[][] board) {
 		super(board);
 	}

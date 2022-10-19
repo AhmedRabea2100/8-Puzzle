@@ -32,11 +32,10 @@ public class Print {
 		System.out.println("------------------------------");
 	}
 
-	private void printAnswerDetails(){
+	private void printAnswerDetails() {
 		System.out.println("Path to goal: " + state.getPath());
 		System.out.println("Cost = " + state.getCost());
 		System.out.println("Number of expanded nodes = " + s.getNumExploredNodes());
 		System.out.println("Max depth = " + s.getMaxDepth());
 	}
-
 }

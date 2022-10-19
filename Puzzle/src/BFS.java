@@ -25,6 +25,7 @@ public class BFS {
 			exploredStates.add(currentState.stringify());
 			if (currentState.isGoal())
 				return currentState;
+
 			for (State neighbor : currentState.getNeighbors()) {
 				if (!exploredStates.contains(neighbor.stringify()) && !fringeSet.contains(neighbor.stringify())) {
 					fringe.add(neighbor);
