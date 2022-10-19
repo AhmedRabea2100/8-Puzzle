@@ -6,10 +6,8 @@ public class State {
 	private int[][] board;
 	private Point emptyTile;
 	private State parent;
-	private List<State> neighbours;
 	private int cost;
 	private String path;
-	private int maxDepth = 0;
 	public enum Direction {
 		Left(new Point(-1, 0), "L"),
 		UP(new Point(0, -1), "U"),
@@ -41,10 +39,8 @@ public class State {
 		this.board = board;
 		this.parent = parent;
 		emptyTile = findEmptyTile();
-		neighbours = new ArrayList<>();
 		this.cost = cost;
 		this.path = path;
-		this.maxDepth = Math.max(this.maxDepth, this.cost);
 	}
 
 	private Point findEmptyTile() {
@@ -57,11 +53,13 @@ public class State {
 		return null;
 	}
 
-	private void findNeighbours(State state) {
+	private List<State> findNeighbours(State state) {
+		List<State> neighbours = new ArrayList<>();
 		for(Direction direction : Direction.values()) {
 			if(isSafe(emptyTile.y + direction.getY(), emptyTile.x + direction.getX()))
 				neighbours.add(swap(direction, state));
 		}
+		return neighbours;
 	}
 
 	private State swap(Direction direction, State state) {
@@ -70,7 +68,6 @@ public class State {
 			for (int j = 0; j < 3; j++)
 				newBoard[i][j] = board[i][j];
 		}
-
 		newBoard[emptyTile.y + direction.getY()][emptyTile.x + direction.getX()] = board[emptyTile.y][emptyTile.x];
 		newBoard[emptyTile.y][emptyTile.x] = board[emptyTile.y + direction.getY()][emptyTile.x + direction.getX()];
 		return new State(newBoard, state, cost + 1, path + direction.getPath());
@@ -87,6 +84,7 @@ public class State {
 				str += Integer.toString(board[i][j]);
 		return str;
 	}
+
 	public boolean isGoal(){
 		return "012345678".equals(arrToString());
 	}
@@ -95,21 +93,12 @@ public class State {
 		return board;
 	}
 
-	public void setBoard(int[][] board) {
-		this.board = board;
-	}
-
 	public State getParent() {
 		return parent;
 	}
 
 	public List<State> getNeighbors(State state) {
-		findNeighbours(state);
-		return neighbours;
-	}
-
-	public void setNeighbours(List<State> neighbours) {
-		this.neighbours = neighbours;
+		return findNeighbours(state);
 	}
 
 	public String getPath() {
@@ -120,7 +109,4 @@ public class State {
 		return cost;
 	}
 
-	public int getMaxDepth() {
-		return maxDepth;
-	}
 }
