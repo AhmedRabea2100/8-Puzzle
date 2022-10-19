@@ -14,7 +14,7 @@ public class Helpers {
         {
             for(int j = 0; j < 3; j++)
             {
-                System.out.print(currentNode.getState()[i][j]+" ");
+                System.out.print(currentNode.getBoard()[i][j]+" ");
             }
             System.out.println();
         }
