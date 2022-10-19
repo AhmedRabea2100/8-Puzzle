@@ -9,6 +9,7 @@ public class BFS {
 	private State currentState;
 	private Queue<State> fringe = new LinkedList<>();
 	private Set<String> exploredStates = new HashSet<>();
+	private Set<String> fringeState = new HashSet<>();
 
 	public BFS(int[][] board) {
 		root = new State(board, null, 0, "");
@@ -16,15 +17,18 @@ public class BFS {
 
 	public State solve() {
 		fringe.add(root);
+		fringeState.add(root.stringify());
 		while (!fringe.isEmpty()) {
 			currentState = fringe.poll();
+			fringeState.remove(currentState.stringify());
 			exploredStates.add(currentState.stringify());
 			if (currentState.isGoal())
 				return currentState;
-
 			for (State neighbor : currentState.getNeighbors())
-				if (!exploredStates.contains(neighbor.stringify()) && !fringe.contains(neighbor))
+				if (!exploredStates.contains(neighbor.stringify()) && !fringeState.contains(neighbor.stringify())) {
 					fringe.add(neighbor);
+					fringeState.add(neighbor.stringify());
+				}
 		}
 		return currentState;
 	}
