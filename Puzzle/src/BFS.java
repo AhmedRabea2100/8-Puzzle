@@ -4,7 +4,6 @@ import java.util.Queue;
 import java.util.Set;
 
 public class BFS {
-
 	private State root;
 	private State currentState;
 	private Queue<State> fringe = new LinkedList<>();
@@ -26,12 +25,12 @@ public class BFS {
 			exploredStates.add(currentState.stringify());
 			if (currentState.isGoal())
 				return currentState;
-
-			for (State neighbor : currentState.getNeighbors())
+			for (State neighbor : currentState.getNeighbors()) {
 				if (!exploredStates.contains(neighbor.stringify()) && !fringeSet.contains(neighbor.stringify())) {
 					fringe.add(neighbor);
 					fringeSet.add(neighbor.stringify());
 				}
+			}
 		}
 		return currentState;
 	}

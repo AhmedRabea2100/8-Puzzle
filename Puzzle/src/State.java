@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class State {
-
 	private int[][] board;
 	private Point emptyTile;
 	private State parent;
@@ -11,7 +10,10 @@ public class State {
 	private String path;
 
 	public enum Direction {
-		Left(new Point(-1, 0), "L"), UP(new Point(0, -1), "U"), Right(new Point(1, 0), "R"), Down(new Point(0, 1), "D");
+		Right(new Point(1, 0), "R"),
+		Left(new Point(-1, 0), "L"),
+		UP(new Point(0, -1), "U"),
+		Down(new Point(0, 1), "D");
 
 		private Point direction;
 		private String path;
@@ -108,10 +110,18 @@ public class State {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
+		builder.append("+---+---+---+" + "\n");
 		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++)
-				builder.append(board[i][j] + " ");
-			builder.append("\n");
+			builder.append("| ");
+			for (int j = 0; j < 3; j++) {
+				if(board[i][j] == 0)
+					builder.append(" " + " | ");
+				else
+					builder.append(board[i][j] + " | ");
+			}
+				builder.append("\n"+"+---+---+---+");
+			if(i != 2)
+				builder.append("\n");
 		}
 		return builder.toString();
 	}

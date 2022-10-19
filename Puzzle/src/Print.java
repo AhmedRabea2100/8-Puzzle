@@ -1,24 +1,20 @@
 import java.util.Stack;
 
 public class Print {
-
 	private State state;
-	private BFS bfs;
+	private aStarManhattan s;
 
-	public Print(State state, BFS bfs) {
+	public Print(State state, aStarManhattan s) {
 		this.state = state;
-		this.bfs = bfs;
+		this.s = s;
 	}
 
 	public void print() {
-		printStates();
-		printPath();
-		printCost();
-		printNumExploredStates();
-		printMaxDepth();
+		printSteps();
+		printAnswerDetails();
 	}
 
-	private void printStates() {
+	private void printSteps() {
 		Stack<State> stack = new Stack<>();
 		while (state != null) {
 			stack.push(state);
@@ -26,29 +22,21 @@ public class Print {
 		}
 		while (!stack.isEmpty()) {
 			state = stack.pop();
-			printCurrentState();
+			printStep();
 		}
 	}
 
-	private void printCurrentState() {
+	private void printStep() {
 		System.out.println("Current state after: " + state.getPath());
 		System.out.println(state);
 		System.out.println("------------------------------");
 	}
 
-	private void printPath() {
+	private void printAnswerDetails(){
 		System.out.println("Path to goal: " + state.getPath());
-	}
-
-	private void printCost() {
 		System.out.println("Cost = " + state.getCost());
+		System.out.println("Number of expanded nodes = " + s.getNumExploredNodes());
+		System.out.println("Max depth = " + s.getMaxDepth());
 	}
 
-	private void printNumExploredStates() {
-		System.out.println("Number of expanded nodes = " + bfs.getNumExploredNodes());
-	}
-
-	private void printMaxDepth() {
-		System.out.println("Max depth = " + bfs.getMaxDepth());
-	}
 }
