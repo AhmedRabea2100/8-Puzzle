@@ -1,10 +1,10 @@
 
 import java.util.*;
 
-public class Helpers {
+public class Print {
     static State currentNode;
     static BFS  bfs;
-    public Helpers(State currentNode, BFS bfs){
+    public Print(State currentNode, BFS bfs){
         this.currentNode = currentNode;
         this.bfs = bfs;
     }
