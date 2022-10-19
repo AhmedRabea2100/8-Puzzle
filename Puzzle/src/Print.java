@@ -9,14 +9,14 @@ public class Print {
 		this.state = state;
 		this.bfs = bfs;
 	}
-	
+
 	public void print() {
 		printStates();
 		printPath();
 		printCost();
 		printNumExploredStates();
 	}
-	
+
 	private void printStates() {
 		Stack<State> stack = new Stack<>();
 		while (state != null) {
@@ -28,13 +28,13 @@ public class Print {
 			printCurrentState();
 		}
 	}
-	
+
 	private void printCurrentState() {
 		System.out.println("Current state after: " + state.getPath());
 		System.out.println(state);
 		System.out.println("------------------------------");
 	}
-	
+
 	private void printPath() {
 		System.out.println("Path to goal: " + state.getPath());
 	}

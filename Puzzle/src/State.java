@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class State {
-
 	private int[][] board;
 	private Point emptyTile;
 	private State parent;
@@ -75,8 +74,20 @@ public class State {
 		return new State(newBoard, this, cost + 1, path + direction.getPath());
 	}
 
-	private static boolean isSafe(int x, int y) {
+	private static boolean isSafe(int y, int x) {
 		return (x >= 0 && x < 3 && y >= 0 && y < 3);
+	}
+
+	public String stringify() {
+		String str = "";
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 3; j++)
+				str += Integer.toString(board[i][j]);
+		return str;
+	}
+
+	public boolean isGoal() {
+		return "012345678".equals(stringify());
 	}
 
 	public int[][] getBoard() {
