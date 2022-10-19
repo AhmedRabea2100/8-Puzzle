@@ -47,7 +47,8 @@ public class Print {
 	private void printNumExploredStates() {
 		System.out.println("Number of expanded nodes = " + bfs.getNumExploredNodes());
 	}
-	private void  printMaxDepth(){
-		System.out.println("Max depth = "+bfs.getMaxDepth());
+
+	private void printMaxDepth() {
+		System.out.println("Max depth = " + bfs.getMaxDepth());
 	}
 }

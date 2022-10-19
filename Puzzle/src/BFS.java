@@ -9,7 +9,7 @@ public class BFS {
 	private State currentState;
 	private Queue<State> fringe = new LinkedList<>();
 	private Set<String> exploredStates = new HashSet<>();
-	private Set<String> fringeState = new HashSet<>();
+	private Set<String> fringeSet = new HashSet<>();
 	private int maxDepth = 0;
 
 	public BFS(int[][] board) {
@@ -18,19 +18,19 @@ public class BFS {
 
 	public State solve() {
 		fringe.add(root);
-		fringeState.add(root.stringify());
+		fringeSet.add(root.stringify());
 		while (!fringe.isEmpty()) {
 			currentState = fringe.poll();
-			maxDepth = Math.max(maxDepth,currentState.getCost());
-			fringeState.remove(currentState.stringify());
+			maxDepth = Math.max(maxDepth, currentState.getCost());
+			fringeSet.remove(currentState.stringify());
 			exploredStates.add(currentState.stringify());
 			if (currentState.isGoal())
 				return currentState;
-			for (State neighbor : currentState.getNeighbors())
-				if (!exploredStates.contains(neighbor.stringify()) && !fringeState.contains(neighbor.stringify())) {
-					fringe.add(neighbor);
-					fringeState.add(neighbor.stringify());
 
+			for (State neighbor : currentState.getNeighbors())
+				if (!exploredStates.contains(neighbor.stringify()) && !fringeSet.contains(neighbor.stringify())) {
+					fringe.add(neighbor);
+					fringeSet.add(neighbor.stringify());
 				}
 		}
 		return currentState;
@@ -43,5 +43,4 @@ public class BFS {
 	public int getMaxDepth() {
 		return maxDepth;
 	}
-
 }
