@@ -1,9 +1,10 @@
 public class Main {
+
 	public static void main(String[] args) {
-		int[][] state = { { 4, 1, 2 }, { 3, 0, 5 }, { 7, 6, 8 } };
-		aStarManhattan ecludian = new aStarManhattan(state);
-		State currentNode = ecludian.solve();
-		Print sol = new Print(currentNode, ecludian);
+		int[][] state = { { 0, 2, 3 }, { 1, 4, 5 }, { 7, 8, 6 } };
+		BFS bfs = new BFS(state);
+		State currentNode = bfs.solve();
+		Print sol = new Print(currentNode, bfs);
 		sol.print();
 	}
 }
