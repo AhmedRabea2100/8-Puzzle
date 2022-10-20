@@ -1,7 +1,5 @@
 package datastructures;
 
-
-
 public interface Fringe<T> {
 
 	public void add(T e);
