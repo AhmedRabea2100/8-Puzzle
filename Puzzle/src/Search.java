@@ -39,6 +39,7 @@ public class Search {
 			exploredStates.add(currentState.stringify());
 
 			if (getNumExploredNodes() == 181440)
+				// return null when reach maximum number of states can be explored
 				return null;
 			if (currentState.isGoal())
 				// The goal state has been found.

@@ -28,6 +28,7 @@ public abstract class aStar extends Search {
 			// Mark the current state as visited
 			exploredStates.add(currentState.stringify());
 			if (getNumExploredNodes() == 181440)
+				// return null when reach maximum number of states can be explored
 				return null;
 			maxDepth = Math.max(maxDepth, currentState.getCost());
 			if (currentState.isGoal())
