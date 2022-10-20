@@ -1,26 +1,25 @@
 import java.util.Comparator;
-import java.util.HashSet;
-import java.util.PriorityQueue;
 
-public abstract class aStar {
-	private State root;
-	private int maxDepth = 0;
-	private PriorityQueue<State> fringe = new PriorityQueue<>(
-			Comparator.comparingInt(a -> (a.getCost() + calcHeuristic(a.getBoard()))));
-	private HashSet<String> exploredStates = new HashSet<>();
+import datastructures.PriorityQueue;
+
+public abstract class aStar extends Search {
 
 	public aStar(int[][] board) {
-		root = new State(board, null, 0, "");
+		super(null, board);
+		fringe = new PriorityQueue<State>(Comparator.comparingInt(a -> (a.getCost() + calcHeuristic(a.getBoard()))));
 	}
 
+	@Override
 	public State solve() {
 		fringe.add(root);
 		State currentState = null;
 		while (!fringe.isEmpty()) {
-			currentState = fringe.poll();
+			currentState = fringe.remove();
 //			if(exploredNodes.contains(currentState.stringify()) && !currentState.isGoal())
 //				continue;
 			exploredStates.add(currentState.stringify());
+			if (getNumExploredNodes() == 181440)
+				return null;
 			maxDepth = Math.max(maxDepth, currentState.getCost());
 			if (currentState.isGoal())
 				return currentState;
@@ -31,14 +30,6 @@ public abstract class aStar {
 			}
 		}
 		return currentState;
-	}
-
-	public int getNumExploredNodes() {
-		return exploredStates.size();
-	}
-
-	public int getMaxDepth() {
-		return maxDepth;
 	}
 
 	public abstract int calcHeuristic(int[][] board);

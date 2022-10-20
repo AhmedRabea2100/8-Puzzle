@@ -2,9 +2,9 @@ import java.util.Stack;
 
 public class Print {
 	private State state;
-	private aStarManhattan s;
+	private Search s;
 
-	public Print(State state, aStarManhattan s) {
+	public Print(State state, Search s) {
 		this.state = state;
 		this.s = s;
 	}

@@ -1,13 +1,17 @@
 public class Main {
 
 	public static void main(String[] args) {
-		int[][] state = { { 0, 1, 2 }, { 5, 3, 4 }, { 6, 7, 8 } };
-		aStarManhattan s = new aStarManhattan(state);
+		int[][] state = { { 2, 1, 3 }, { 6, 0, 7 }, { 8, 5, 4 } };
+		Search s = new DFS(state);
 		long start = System.currentTimeMillis();
 		State currentNode = s.solve();
 		long end = System.currentTimeMillis();
-		System.out.println("time = " + (end - start));
-		Print sol = new Print(currentNode, s);
-		sol.print();
+		if (currentNode == null)
+			System.out.println("This method cannot solve this problem.");
+		else {
+			Print sol = new Print(currentNode, s);
+			sol.print();
+		}
+		System.out.println("time = " + (end - start) + " ms");
 	}
 }
