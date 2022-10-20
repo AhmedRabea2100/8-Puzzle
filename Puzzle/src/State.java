@@ -10,7 +10,7 @@ public class State {
 	private String path;
 
 	public enum Direction {
-		Right(new Point(1, 0), "R"),  Down(new Point(0, 1), "D") ,Left(new Point(-1, 0), "L"),UP(new Point(0, -1), "U"),;
+		Right(new Point(1, 0), "R"), Down(new Point(0, 1), "D"), Left(new Point(-1, 0), "L"), UP(new Point(0, -1), "U");
 
 		private Point direction;
 		private String path;

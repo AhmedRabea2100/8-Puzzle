@@ -7,7 +7,7 @@ public class Main {
 		State currentNode = s.solve();
 		long end = System.currentTimeMillis();
 		if (currentNode == null)
-			System.out.println("NO Sol");
+			System.out.println("This method cannot solve this problem.");
 		else {
 			Print sol = new Print(currentNode, s);
 			sol.print();

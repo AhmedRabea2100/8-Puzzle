@@ -25,7 +25,7 @@ public class Search {
 			maxDepth = Math.max(maxDepth, currentState.getCost());
 			fringeSet.remove(currentState.stringify());
 			exploredStates.add(currentState.stringify());
-			if(getNumExploredNodes() == 181440)
+			if (getNumExploredNodes() == 181440)
 				return null;
 			if (currentState.isGoal())
 				return currentState;
