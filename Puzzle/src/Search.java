@@ -32,7 +32,6 @@ public class Search {
 
 			for (State neighbor : currentState.getNeighbors()) {
 				if (!exploredStates.contains(neighbor.stringify()) && !fringeSet.contains(neighbor.stringify())) {
-
 					fringe.add(neighbor);
 					fringeSet.add(neighbor.stringify());
 				}

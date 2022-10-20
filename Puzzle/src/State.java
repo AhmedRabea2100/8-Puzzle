@@ -52,11 +52,11 @@ public class State {
 	}
 
 	public String stringify() {
-		String str = "";
+		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < 3; i++)
 			for (int j = 0; j < 3; j++)
-				str += Integer.toString(board[i][j]);
-		return str;
+				builder.append(Integer.toString(board[i][j]));
+		return builder.toString();
 	}
 
 	public int[][] getBoard() {

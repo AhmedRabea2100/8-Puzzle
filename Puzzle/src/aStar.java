@@ -15,8 +15,6 @@ public abstract class aStar extends Search {
 		State currentState = null;
 		while (!fringe.isEmpty()) {
 			currentState = fringe.remove();
-//			if(exploredNodes.contains(currentState.stringify()) && !currentState.isGoal())
-//				continue;
 			exploredStates.add(currentState.stringify());
 			if (getNumExploredNodes() == 181440)
 				return null;
