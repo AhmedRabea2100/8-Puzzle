@@ -1,6 +1,7 @@
 import java.util.HashSet;
 import java.util.Set;
 
+
 import datastructures.Fringe;
 
 public class Search {
@@ -14,6 +15,16 @@ public class Search {
 		root = new State(board, null, 0, "");
 		this.fringe = fring;
 	}
+	/**
+	 * Search for the goal state using BFS/DFS algorithm.
+	 * initialState
+	 * starting state.
+	 * explored states
+	 * exploredStates object to store number of expanded nodes in it.
+	 * @return
+	 * currentNode if goal state is reached.
+	 * null otherwise.
+	 */
 
 	public State solve() {
 		fringe.add(root);

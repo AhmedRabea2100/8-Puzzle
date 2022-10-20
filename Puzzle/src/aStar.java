@@ -8,6 +8,16 @@ public abstract class aStar extends Search {
 		super(null, board);
 		fringe = new PriorityQueue<State>(Comparator.comparingInt(a -> (a.getCost() + calcHeuristic(a.getBoard()))));
 	}
+	/**
+	 * Search for the goal state using A* algorithm.
+	 * initialState
+	 * starting state.
+	 * explored states
+	 * exploredStates object to store number of expanded nodes in it.
+	 * @return
+	 * currentNode if goal state is reached.
+	 * null otherwise.
+	 */
 
 	@Override
 	public State solve() {
