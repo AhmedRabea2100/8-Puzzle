@@ -4,11 +4,10 @@ public class Main {
 
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		System.out.print("Enter initial state space or comma separated: \n");
-
+		System.out.print("Enter initial state: \n");
 		int[][] state = new int[3][3];
-		for(int i=0;i<3;i++)
-			for(int j=0;j<3;j++)
+		for (int i = 0; i < 3; i++)
+			for (int j = 0; j < 3; j++)
 				state[i][j] = in.nextInt();
 
 		System.out.println("Choose algorithm to Solve : ");

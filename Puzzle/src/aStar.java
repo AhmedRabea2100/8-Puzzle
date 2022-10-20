@@ -8,16 +8,6 @@ public abstract class aStar extends Search {
 		super(null, board);
 		fringe = new PriorityQueue<State>(Comparator.comparingInt(a -> (a.getCost() + calcHeuristic(a.getBoard()))));
 	}
-	/**
-	 * Search for the goal state using A* algorithm.
-	 * initialState
-	 * starting state.
-	 * explored states
-	 * exploredStates object to store number of expanded nodes in it.
-	 * @return
-	 * currentNode if goal state is reached.
-	 * null otherwise.
-	 */
 
 	@Override
 	public State solve() {
@@ -25,18 +15,22 @@ public abstract class aStar extends Search {
 		State currentState = null;
 		while (!fringe.isEmpty()) {
 			currentState = fringe.remove();
+			maxDepth = Math.max(maxDepth, currentState.getCost());
 			// Mark the current state as visited
 			exploredStates.add(currentState.stringify());
+
+			// Return null if maximum number of states that can be explored is reached
 			if (getNumExploredNodes() == 181440)
-				// return null when reach maximum number of states can be explored
 				return null;
-			maxDepth = Math.max(maxDepth, currentState.getCost());
+
+			// The goal state has been found.
 			if (currentState.isGoal())
-				// The goal state has been found.
 				return currentState;
+
 			/*
-			 * Loop through the successors
-			 * check if they've already been evaluated, and if not, add them to the priority queue
+			 * Loop through the successors.
+			 * Check if they've already been evaluated or currently in the fringe,
+			 * if not, add them to the fringe.
 			 */
 			for (State neighbor : currentState.getNeighbors()) {
 				if (!exploredStates.contains(neighbor.stringify()))
