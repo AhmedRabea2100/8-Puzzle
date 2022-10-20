@@ -19,16 +19,20 @@ public class Search {
 		fringe.add(root);
 		fringeSet.add(root.stringify());
 		State currentState = null;
+
 		while (!fringe.isEmpty()) {
 			currentState = fringe.remove();
 			maxDepth = Math.max(maxDepth, currentState.getCost());
 			fringeSet.remove(currentState.stringify());
 			exploredStates.add(currentState.stringify());
+			if(getNumExploredNodes() == 181440)
+				return null;
 			if (currentState.isGoal())
 				return currentState;
 
 			for (State neighbor : currentState.getNeighbors()) {
 				if (!exploredStates.contains(neighbor.stringify()) && !fringeSet.contains(neighbor.stringify())) {
+
 					fringe.add(neighbor);
 					fringeSet.add(neighbor.stringify());
 				}

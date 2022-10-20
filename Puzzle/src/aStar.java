@@ -18,6 +18,8 @@ public abstract class aStar extends Search {
 //			if(exploredNodes.contains(currentState.stringify()) && !currentState.isGoal())
 //				continue;
 			exploredStates.add(currentState.stringify());
+			if (getNumExploredNodes() == 181440)
+				return null;
 			maxDepth = Math.max(maxDepth, currentState.getCost());
 			if (currentState.isGoal())
 				return currentState;
