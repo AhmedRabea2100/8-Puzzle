@@ -24,12 +24,18 @@ public class Search {
 			currentState = fringe.remove();
 			maxDepth = Math.max(maxDepth, currentState.getCost());
 			fringeSet.remove(currentState.stringify());
+			// Mark the current state as visited
 			exploredStates.add(currentState.stringify());
+
 			if (getNumExploredNodes() == 181440)
 				return null;
 			if (currentState.isGoal())
+				// The goal state has been found.
 				return currentState;
-
+			/*
+			 * Loop through the successors
+			 * check if they've already been evaluated, and if not, add them to the fringe
+			 */
 			for (State neighbor : currentState.getNeighbors()) {
 				if (!exploredStates.contains(neighbor.stringify()) && !fringeSet.contains(neighbor.stringify())) {
 					fringe.add(neighbor);

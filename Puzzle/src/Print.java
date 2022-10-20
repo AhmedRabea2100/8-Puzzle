@@ -15,6 +15,7 @@ public class Print {
 	}
 
 	private void printSteps() {
+		// Use a stack to track the path from the starting state to the goal state
 		Stack<State> stack = new Stack<>();
 		while (state != null) {
 			stack.push(state);

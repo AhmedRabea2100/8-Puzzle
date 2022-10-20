@@ -9,6 +9,7 @@ public class State {
 	private int cost;
 	private String path;
 
+
 	public enum Direction {
 		Right(new Point(1, 0), "R"), Down(new Point(0, 1), "D"), Left(new Point(-1, 0), "L"), UP(new Point(0, -1), "U");
 
@@ -40,7 +41,7 @@ public class State {
 		this.cost = cost;
 		this.path = path;
 	}
-
+	// find location of empty tile
 	private Point findEmptyTile() {
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 3; x++) {
@@ -51,6 +52,7 @@ public class State {
 		return null;
 	}
 
+	// Array to string
 	public String stringify() {
 		StringBuilder builder = new StringBuilder();
 		for (int i = 0; i < 3; i++)
@@ -67,6 +69,7 @@ public class State {
 		return parent;
 	}
 
+	// generate successors to the current state
 	public List<State> getNeighbors() {
 		List<State> neighbors = new ArrayList<>();
 		for (Direction direction : Direction.values()) {
@@ -92,6 +95,7 @@ public class State {
 		return new State(newBoard, this, cost + 1, path + direction.getPath());
 	}
 
+	// determine if current state is goal
 	public boolean isGoal() {
 		return "012345678".equals(stringify());
 	}
@@ -103,6 +107,8 @@ public class State {
 	public int getCost() {
 		return cost;
 	}
+
+
 
 	@Override
 	public String toString() {
