@@ -24,4 +24,6 @@ public class PriorityQueue<T> implements Fringe<T> {
 	public boolean isEmpty() {
 		return queue.isEmpty();
 	}
+
+	public void remove(T e){queue.remove(e);}
 }

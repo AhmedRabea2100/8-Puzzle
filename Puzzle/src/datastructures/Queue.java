@@ -22,4 +22,9 @@ public class Queue<T> implements Fringe<T> {
 	public boolean isEmpty() {
 		return queue.isEmpty();
 	}
+
+	@Override
+	public void remove(T e) {
+		queue.remove(e);
+	}
 }

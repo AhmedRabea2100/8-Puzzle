@@ -7,4 +7,5 @@ public interface Fringe<T> {
 	public T remove();
 
 	public boolean isEmpty();
+	public void remove(T e);
 }

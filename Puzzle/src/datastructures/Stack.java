@@ -22,4 +22,9 @@ public class Stack<T> implements Fringe<T> {
 	public boolean isEmpty() {
 		return stack.isEmpty();
 	}
+
+	@Override
+	public void remove(T e) {
+		stack.remove(e);
+	}
 }
